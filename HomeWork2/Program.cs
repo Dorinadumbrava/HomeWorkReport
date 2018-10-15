@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace HomeWork2
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             Console.WriteLine("Chose a working method");
@@ -17,19 +19,52 @@ namespace HomeWork2
             {
                 case "F":
                 {
-                        GetData.ReadFromFile();
-                }
+                        string [] fileUserInputs = System.IO.File.ReadAllLines(@"C:\Dorina Projects\HomeWorkReport\HomeWork2\UserData.txt");
+                        if (fileUserInputs.Length > 0)
+                        {
+                            foreach (string input in fileUserInputs)
+                            {
+                                GetData.ReadAndSplit(input);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("There are no arguments inserted");
+                        }
+                        GetData.ShowUserInputs();
+                        Console.ReadKey();
+                    }
                     break;
                 case "I":
                     {
                         Console.WriteLine("The data will be taken from arguments");
-                        GetData.ReadFromCmd(args);
+                        if (args.Length > 0)
+                        {
+                            foreach (string input in args)
+                            {
+                                GetData.ReadAndSplit(input);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("There are no arguments inserted");
+                        }
+                        GetData.ShowUserInputs();
                         Console.ReadKey();
                     }
                     break;
                 case "":
                     {
-                        GetData.ReadFromConsole();
+                        Console.WriteLine("Write your user data: ");
+                        Console.WriteLine("Once you finsh your inputs, press Enter.");
+                        string consoleInput = " ";
+                        while (consoleInput.Length > 0)
+                        {
+                            consoleInput = Console.ReadLine();
+                            GetData.ReadAndSplit(consoleInput);
+                        }
+                        GetData.ShowUserInputs();
+                        Console.ReadKey();
                     }
                     break;
                 default:
