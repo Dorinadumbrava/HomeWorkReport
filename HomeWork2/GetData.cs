@@ -8,17 +8,18 @@ namespace HomeWork2
 {
     static class GetData
     {
-        static int numberOfArguments = 5;
+        static int numberOfArguments = 6;
         static List<string[]> userInputs = new List<string[]>();
 
         public static void ReadAndSplit(string args)
         {
             if (args.Length >0)
             {
-                    args.TrimEnd(';');  
             string[] tempUserInput = args.Split(' ');
+                Console.WriteLine(" {0} + {1}", args, tempUserInput.Count());
                 if (tempUserInput.Length == numberOfArguments)
             {
+                    tempUserInput = tempUserInput.Where(w => w != tempUserInput[tempUserInput.Length - 1]).ToArray();
                 userInputs.Add(tempUserInput);
             }
             else
@@ -42,21 +43,8 @@ namespace HomeWork2
         }
     
 
-    public static void ReadFromConsole()
-    {
-        List<string> temporaryInput = new List<string>();
-        string consoleInput = " ";
-        while (consoleInput.Length > 0)
-        {
-            consoleInput = Console.ReadLine();
-            temporaryInput.Add(consoleInput);
-        }
-    }
 
-    public static void ReadFromFile()
-    {
-        throw new NotImplementedException();
-    }
+    
 
     }
 
