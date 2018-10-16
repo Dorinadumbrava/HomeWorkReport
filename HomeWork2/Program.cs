@@ -19,7 +19,9 @@ namespace HomeWork2
             {
                 case "F":
                 {
-                        string [] fileUserInputs = System.IO.File.ReadAllLines(@"C:\Dorina Projects\HomeWorkReport\HomeWork2\UserData.txt");
+                        Console.WriteLine("Give a path to your file");
+                        string connectToUserInput = Console.ReadLine();
+                        string [] fileUserInputs = System.IO.File.ReadAllLines(@connectToUserInput);
                         if (fileUserInputs.Length > 0)
                         {
                             foreach (string input in fileUserInputs)
@@ -31,8 +33,8 @@ namespace HomeWork2
                         {
                             Console.WriteLine("There are no arguments inserted");
                         }
-                        GetData.ShowUserInputs();
-                        Console.ReadKey();
+                        EmployeeData.CreateUser();
+                        //GetData.ShowUserInputs();
                     }
                     break;
                 case "I":
@@ -49,8 +51,8 @@ namespace HomeWork2
                         {
                             Console.WriteLine("There are no arguments inserted");
                         }
-                        GetData.ShowUserInputs();
-                        Console.ReadKey();
+                        EmployeeData.CreateUser();
+                        //GetData.ShowUserInputs();
                     }
                     break;
                 case "":
@@ -63,13 +65,18 @@ namespace HomeWork2
                             consoleInput = Console.ReadLine();
                             GetData.ReadAndSplit(consoleInput);
                         }
-                        GetData.ShowUserInputs();
-                        Console.ReadKey();
+                        EmployeeData.CreateUser();
+                        //GetData.ShowUserInputs();
+                        
                     }
                     break;
                 default:
                     break;
             }
+            Console.WriteLine("");
+            Console.WriteLine("Your users:");
+            EmployeeData.Show();
+            Console.ReadKey();
         }
     }
 }
